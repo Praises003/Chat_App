@@ -5,6 +5,11 @@ import './App.css'
 import HomeScreen from './screens/HomeScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import { Routes, Route } from 'react-router-dom'
+import LoginScreen from './screens/LoginScreen'
+import ChatPage from './screens/ChatPage'
+import SideDrawer from './components/SideDrawer'
+import store from './store'
+import { register } from './slices/userSlice'
 
 
 function App() {
@@ -15,9 +20,13 @@ function App() {
     <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
+        <Route path='login' element={<LoginScreen /> } />
 
-        <Route />
+        <Route path='/chat' element={<ChatPage/>} />
+        <Route path='/sd' element={<SideDrawer />} />
     </Routes>
+
+    
 
     </>
   )
