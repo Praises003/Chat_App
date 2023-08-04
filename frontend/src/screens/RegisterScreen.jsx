@@ -15,7 +15,8 @@ const [formData, setFormData] = useState({
   password: "",
 })
 
-const [picture, setPicture] = useState("")
+const [pic, setPic] = useState("")
+const [uploadPic, setUploadPic] = useState("")
 
 const [show, setShow] = useState(false)
 const dispatch = useDispatch()
@@ -33,48 +34,59 @@ useEffect(() => {
   }
 
 },[user, isError, isSuccess, message, navigate, dispatch])
+  
+
 const onChangeFunc = (e) => {
   setFormData(prevState => ({
     ...prevState, [e.target.name]: e.target.value
   }))
 }
 
-const onSubmit = (e) => {
+
+const pictureFunc = (e) => {
+  setPic(e.target.files[0])
+}
+const onSubmit = async(e) => {
   e.preventDefault()
   let userData
-  if(!name && !email && !password && !picture) {
+  if(!name && !email && !password && !pic) {
     toast.error("Please Fill out All Fields")
   } 
-
-  userData = {name, email, password, picture}
-
-  postPic()
  
-  dispatch(register(userData))
-console.log("subnit")
-    
+  const url = await postPic()
+  userData = {name, email, password, picture: url}
+  console.log(url)
+
+   dispatch(register(userData)) 
+  console.log("picture empty")
   
-
-}
-const pictureFunc = (e) => {
-  setPicture(e.target.files[0])
+console.log("subnit")
 }
 
-
-console.log(picture)
-console.log(formData)
 const postPic = async() => {
   const formD = new FormData()
-  formD.append("file", picture)
+  formD.append("file", pic)
   formD.append("cloud_name", "dmhylxogr")
   try {
     const { data } = await axios.post("/api/upload", formD)
   console.log(data)
+  //setUploadPic(data)
   return data.url
   } catch (error) {
     console.error(error)
   }
   
+
+//console.log(uploadPic)
+
+
+
+
+
+
+
+  
+
 }
    return (
     <>
@@ -104,7 +116,7 @@ const postPic = async() => {
           <div>
           <label className="block w-full mb-3" htmlFor="">Picture </label>
           <input className="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 mb-3" type="file" placeholder='Picture' name='picture' onChange ={pictureFunc}/>
-          {console.log(picture)}
+          {console.log(pic)}
           </div>
         </form>
         <button onClick={onSubmit}  style={{backgroundColor: "#10C17D"}} className={name && email  && password ? 'w-full text-center py-2 text-white rounded-2xl text-lg' : "w-full  text-center py-2 text-white rounded-2xl text-lg opacity-40 cursor-not-allowed"}>Sign Up</button>

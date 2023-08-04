@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {FiSearch} from "react-icons/fi"
 import SideDrawer from '../components/SideDrawer'
 import { Link } from 'react-router-dom'
+import ChatComponent from '../components/ChatComponent'
 
 
 
@@ -32,6 +33,9 @@ const ChatPage = () => {
           {
             show && <SideDrawer show={show} setShow={updateShow} /> 
           }
+          <div>
+            <ChatComponent />
+          </div>
 
         
       </div>
