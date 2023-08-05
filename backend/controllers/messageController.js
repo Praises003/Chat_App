@@ -20,14 +20,14 @@ const createMessage = asyncHandler(async(req, res) => {
     try {
         let message = await Message.create(createdMessage)
 
-        message = await message.populate("sender", "name picture")
-        message = await message.populate("chat")
+         message = await message.populate("sender", "name picture")
+         message = await message.populate("chat")
         message = await User.populate(message, {
             path: "chat.users", 
             select: "name picture email"
         }) 
 
-        await Chat.findByIdAndUpdate(req.body.chatId, {
+        await Chat.findByIdAndUpdate(chatId, {
             latestMessage: message
         })
         res.send(message)
