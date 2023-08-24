@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    singleChat: "",
+    singleChat:localStorage.getItem('singleChat') ? JSON.parse(localStorage.getItem("singleChat")): "",
     onError: false,
     onSuccess: false,
     onLoading: false,
@@ -25,6 +25,7 @@ const singleChatsSlice = createSlice({
     reducers:{
         singleChats: (state, action) => {
             state.singleChat = action.payload
+            localStorage.setItem('singleChat', JSON.stringify(action.payload))
         }
     },
     // extraReducers: (builder) =>{

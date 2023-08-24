@@ -81,7 +81,7 @@ const SideDrawer = ({show, setShow}) => {
             ></button>
         </div>
         <div className='mt-12'>
-      {loading ? <h1>Loading</h1> : inputRes?.map(res => <Avatar key={res._id} res={res} onFunction={accessChat} />)}
+      {loading ? <h1>Loading</h1> : inputRes?.map(res => <Avatar key={res._id} res={res} onFunction={() => accessChat(res._id)} />)}
       {/*{console.log(chat[0])}*/}
       {console.log(testChat)}
     </div>

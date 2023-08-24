@@ -10,6 +10,8 @@ import ChatPage from './screens/ChatPage'
 import SideDrawer from './components/SideDrawer'
 import store from './store'
 import { register } from './slices/userSlice'
+import CreateGroupComponent from './components/CreateGroupComponent'
+import GroupProfile from './components/GroupProfile'
 
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
 
         <Route path='/chat' element={<ChatPage/>} />
         <Route path='/sd' element={<SideDrawer />} />
+        <Route path='/group' element={<CreateGroupComponent />} />
+        <Route path='/groupprofile' element={<GroupProfile />} />
     </Routes>
 
     
