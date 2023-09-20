@@ -71,14 +71,14 @@ const SideDrawer = ({show, setShow}) => {
     //const showp = show
   return (
     <>
-    { show  || drawer ? (<div className={`my-1 mx-4 h-screen w-3/4 absolute top-0 bg-white shadow transition-transform ${show ? 'translate-x-0' : '-translate-x-full'}`}>
+    { show  || drawer ? (<div className={`my-1  h-screen w-full absolute top-0 bg-white shadow transition-transform ${show ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="w-72  absolute top-0 left-0 flex justify-center items-center">
-            <input className={` w-full border border-gray-300 text-gray-900 text-md p-2 mb-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  bg-white  `} type="text" placeholder='search for users'value= {input} onChange={e => {setInput(e.target.value); }} />
-            <FaTimes color='#05E28D' size={25} onClick={() => setShow(!show)} />
+            <input className={` w-full border ml-2 border-gray-300 text-gray-900 text-md p-2 mb-3 rounded-lg focus:ring-blue-500 focus:border-blue-500 block  bg-white  `} type="text" placeholder='search for users'value= {input} onChange={e => {setInput(e.target.value); }} />
+            <FaTimes color='#05E28D' size={25} onClick={() => setShow(!show)} className='ml-1' />
             {/* {console.log(show)}
             {console.log(drawer)} */}
-            <button onClick={handleInput} className='bg-blue-700 text-white p-3 text-center'
-            ></button>
+            <button style={{backgroundColor: "#05E28D"}} onClick={handleInput} className='bg-blue-700 text-white px-3 py-1 align-middle text-center ml-2'
+            >Go</button>
         </div>
         <div className='mt-12'>
       {loading ? <h1>Loading</h1> : inputRes?.map(res => <Avatar key={res._id} res={res} onFunction={() => accessChat(res._id)} />)}

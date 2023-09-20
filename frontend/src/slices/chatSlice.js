@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-    chat: localStorage.getItem('chat') ? JSON.parse(localStorage.getItem("chat")): [],
+    // chat: localStorage.getItem('chat') ? JSON.parse(localStorage.getItem("chat")): [],
+    chat: [],
     isError: false,
     isSuccess: false,
     isLoading: false,

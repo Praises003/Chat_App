@@ -11,7 +11,8 @@ import SideDrawer from './components/SideDrawer'
 import store from './store'
 import { register } from './slices/userSlice'
 import CreateGroupComponent from './components/CreateGroupComponent'
-import GroupProfile from './components/GroupProfile'
+import Profile from './components/Profile'
+import StartChat from './components/StartChatComponent'
 
 
 function App() {
@@ -22,12 +23,13 @@ function App() {
     <Routes>
         <Route path="/" element={<HomeScreen />} />
         <Route path="/register" element={<RegisterScreen />} />
-        <Route path='login' element={<LoginScreen /> } />
+        <Route path='/login' element={<LoginScreen /> } />
 
         <Route path='/chat' element={<ChatPage/>} />
         <Route path='/sd' element={<SideDrawer />} />
         <Route path='/group' element={<CreateGroupComponent />} />
-        <Route path='/groupprofile' element={<GroupProfile />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path="/start" element={<StartChat />} />
     </Routes>
 
     

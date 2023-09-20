@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { chats } from '../slices/chatSlice'
 import axios from 'axios'
@@ -7,6 +7,7 @@ import { RealUtil } from '../utils/RealUtil'
 import ChatAvatarComponent from './ChatAvatarComponent'
 const ChatComponent = ({display, setDisplay, refresh}) => {
     const {chat, isLoading, isError, isSuccess, message}= useSelector(state => state.chat) 
+    const [load, setLoad] = useState(false)
     const { user } = useSelector(state => state.user)
     console.log(user)
     const dispatch = useDispatch()
@@ -14,12 +15,15 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
 
     const getChats = async() => {
         try {
+            setLoad(true)
             const { data } = await axios.get('/api/chat')
             console.log(data)
             dispatch(chats(data.getChat))
-            console.log(chat)
+            setLoad(false)
+            // console.log(chat)
            console.log(data.getChat)
           chat ? console.log(chat) : console.log('empty')
+
             
            
         } catch (error) {
@@ -28,13 +32,14 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
     }
     useEffect(() => {
         getChats();
-    },[refresh, dispatch])
+    },[ dispatch, chat.latestMessage])
+    console.log(chat)
   return (
-    <div className={`m-2 ${display ? 'w-full' : 'hidden'}  md:block md:w-4/12 }`}>
+    <div className={`m-2 h-full ${display ? 'w-full' : 'hidden'}  md:block md:w-4/12  }`}>
         <h1>CHATS</h1>
-        <div>
-           {isLoading ? <h1>Loading</h1> :
-            chat?.map(chat => (chat ? <ChatAvatarComponent key={chat._id} chat={chat} display={display} setDisplay={setDisplay}  /> : null ))
+        <div key={1} className='max-h-[calc(93vh-100px)] overflow-y-auto'>
+           {load ? <h1>Loading</h1> :
+            chat?.map(ch => (ch ? <ChatAvatarComponent key={chat._id} chat={ch} display={display} setDisplay={setDisplay}  /> : null ))
            }
            {/* {chat?.map(chat => <h1 key={chat._id}>{chat.latestMessage ? chat.latestMessage.message : null}</h1>)} */}
             {console.log(chat)}

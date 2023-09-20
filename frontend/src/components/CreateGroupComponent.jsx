@@ -107,8 +107,9 @@ const CreateGroupComponent = () => {
     //     func()
     // }, [search])
     const onGroup = (membersToAdd) => {
-        if(selectedMembers.includes[membersToAdd]) return console.log("user exist")
-
+        if(selectedMembers.includes(membersToAdd)){ return console.log("user exist")}
+      console.log(membersToAdd)
+      console.log(selectedMembers)
         setSelectedMembers([...selectedMembers, membersToAdd])
     }
 

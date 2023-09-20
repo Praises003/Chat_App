@@ -39,8 +39,8 @@ const createChat = asyncHandler(async(req, res) => {
             const createdChat = await Chat.create(singleChatData)
 
             const fullChat = await Chat.findOne({ _id: createdChat._id }).populate("users", "-password")
-            res.status(200).json({
-                fullChat})
+            res.status(200).json(
+                fullChat)
         } catch (err) {
             res.status(400)
             throw new Error(err.message)
@@ -117,7 +117,7 @@ const renameGroup = asyncHandler(async(req, res) => {
         res.status(404);
         throw new Error("Chat")
     } else {
-        res.status(201).json(updatedChat)
+        res.status(201).json(renamedChat)
     }
 })
 
