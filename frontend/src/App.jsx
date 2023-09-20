@@ -26,7 +26,6 @@ function App() {
         <Route path='/login' element={<LoginScreen /> } />
 
         <Route path='/chat' element={<ChatPage/>} />
-        <Route path='/sd' element={<SideDrawer />} />
         <Route path='/group' element={<CreateGroupComponent />} />
         <Route path='/profile' element={<Profile />} />
         <Route path="/start" element={<StartChat />} />
