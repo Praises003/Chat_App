@@ -2,6 +2,7 @@ const express = require('express')
 const dotenv = require("dotenv")
 const http = require("http")
 const cookieParser = require('cookie-parser')
+const cors = require("cors")
 const { Server } = require("socket.io")
 const {notFound, errorHandler} = require('./middleware/error')
 dotenv.config()
@@ -18,9 +19,16 @@ const { deleteUpload } = require('./controllers/deleteUploadController')
 
 connectDb()
 
+const corsOptions = {
+    origin: ['http://localhost:3000',"https://chat-app-frontend-b4kq.onrender.com",   "chat-app-frontend-b4kq.onrender.com"],
+    credentials: true,
+    exposedheaders: ["set-cookie"]
+  };
+
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(cors(corsOptions))
 app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp",
