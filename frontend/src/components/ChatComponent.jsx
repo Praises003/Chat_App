@@ -16,7 +16,9 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
     const getChats = async() => {
         try {
             setLoad(true)
-            const { data } = await axios.get('/api/chat')
+            const { data } = await axios.get('https://chat-backend-pi-one.vercel.app/api/chat', {
+                withCredentials: true // important to include cookies
+              })
             console.log(data)
             dispatch(chats(data.getChat))
             setLoad(false)

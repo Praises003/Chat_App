@@ -13,7 +13,7 @@ import axios from 'axios';
 import MessageComponent from './MessageComponent';
 
 
-let ENDPOINT = "http://localhost:5000"
+let ENDPOINT = "http://localhost:5000/"
 let socket, singleChatCompare;
 
 const ChatBoxComponent = ({display, setDisplay}) => {
@@ -27,15 +27,17 @@ const ChatBoxComponent = ({display, setDisplay}) => {
   const {singleChat, isLoading, isError, isSuccess, message}= useSelector(state => state.singleChat)
   
   // console.log(display)
-  // console.log(singleChat)
+   //console.log(singleChat)
   const navigate = useNavigate()
   const sendMessage = async () => {
     if(newMessage) {
       try {
         setNewMessage("")
-        const {data} = await axios.post(`/api/message`, {
+        const {data} = await axios.post(`https://chat-backend-pi-one.vercel.app/api/message`, {
           message: newMessage,
           chatId: singleChat._id
+        }, {
+          withCredentials: true // important to include cookies
         })
         console.log(data)
         socket.emit("new_message", data)
@@ -57,7 +59,9 @@ const ChatBoxComponent = ({display, setDisplay}) => {
 
     try {
       setLoading(true);
-      const { data } = await axios.get(`/api/message/${singleChat._id}`)
+      const { data } = await axios.get(`https://chat-backend-pi-one.vercel.app/api/message/${singleChat._id}`, {
+        withCredentials: true // important to include cookies
+      })
       data ? console.log(data) : console.log("no chat")
       setMessages(data)
       setLoading(false)

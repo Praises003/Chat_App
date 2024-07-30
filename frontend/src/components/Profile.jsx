@@ -20,18 +20,21 @@ const GroupProfile = (props) => {
     const [editGroup, setEditGroup] = useState(false)
     const [searchResult, setSearchResult] = useState([])
     const {singleChat, isLoading, isError, isSuccess, message}= useSelector(state => state.singleChat)
+    const {chat, }= useSelector(state => state.chat) 
     const {user }= useSelector(state => state.user)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     
     console.log(singleChat)
+    console.log(chat)
     console.log(groupName)
     console.log(user)
+    console.log(singleChat)
     const handleEditName = async () => {
         if(!groupName) return console.log("empty")
       // const { d } = await axios.get(`api/user?search=${search === "" ? null : search}`)
       try {
-        const { data } = await axios.put(`/api/chat/rename`, {
+        const { data } = await axios.put(`https://chat-backend-pi-one.vercel.app/api/chat/rename`, {
           chatId: singleChat._id,
           chatName: groupName
         })
@@ -65,7 +68,7 @@ const GroupProfile = (props) => {
       console.log(search)
       // if(!inp) return console.log('not input')
       // console.log(inp)
-      const { data } = await axios.get(`api/user?search=${search === "" ? null : search}`)
+      const { data } = await axios.get(`https://chat-backend-pi-one.vercel.app/api/user?search=${search === "" ? null : search}`)
       console.log(data)
       setSearchResult(data.users)
       console.log(searchResult)
@@ -84,7 +87,7 @@ const GroupProfile = (props) => {
 
       try {
         {/*Loading */}
-        const { data } = await axios.put(`api/chat/groupadd`, {
+        const { data } = await axios.put(`https://chat-backend-pi-one.vercel.app/api/chat/groupadd`, {
           chatId: singleChat._id,
           userId: otherUser._id
         })
@@ -102,7 +105,7 @@ const GroupProfile = (props) => {
       }
 
       try {
-        const { data } = await axios.put(`/api/chat/groupremove`, {
+        const { data } = await axios.put(`https://chat-backend-pi-one.vercel.app/api/chat/groupremove`, {
           chatId: singleChat._id,
           userId: otherUser._id
         })
@@ -143,9 +146,10 @@ const GroupProfile = (props) => {
         <div className="mt-20 ml-10 md:ml-14">
          {!singleChat.groupChat ? <h1>it is false</h1> : <h1>it is true</h1>}
         </div>
+        {console.log(singleChat)}
          {!singleChat.groupChat ? (
           <div className='w-1/2 h-1/2 mx-auto md:w-1/4'>
-            <img className="rounded-full w-40 h-40  object-cover mb-3" src={singleChat.users[1].picture} alt="" />
+            <img className="rounded-full w-40 h-40  object-cover mb-3" src={singleChat?.users[1]?.picture} alt="" />
             <h1 className='text-black font-bold text-lg'>Name: {singleChat.users[1].name}</h1>
             <h1 className='text-black font-bold text-lg'>Email: {singleChat.users[1].email}</h1>
           </div>
