@@ -22,7 +22,7 @@ connectDb()
 const corsOptions = {
     origin: ['http://localhost:3000',"https://chat-app-frontend-b4kq.onrender.com",   "chat-app-frontend-b4kq.onrender.com"],
     credentials: true,
-    exposedheaders: ["set-cookie"]
+    
   };
 
 const app = express()
