@@ -20,7 +20,7 @@ const { deleteUpload } = require('./controllers/deleteUploadController')
 connectDb()
 
 const corsOptions = {
-    origin: ['localhost','http://localhost:3000',"https://chat-app-frontend-b4kq.onrender.com",   "chat-app-frontend-b4kq.onrender.com"],
+    origin: ['localhost','http://localhost:3000/',"https://chat-app-frontend-b4kq.onrender.com",   "chat-app-frontend-b4kq.onrender.com"],
     credentials: true,
     
   };
