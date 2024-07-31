@@ -3,16 +3,14 @@
     "name": "event",
     "builds": [
         {
-            "src": "backend/index.js",
+            "src": "index.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/backend/index.js"
+            "dest": "/index.js"
         }
     ]
 }
-
-
