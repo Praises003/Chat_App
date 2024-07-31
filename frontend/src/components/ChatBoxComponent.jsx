@@ -13,7 +13,7 @@ import axios from 'axios';
 import MessageComponent from './MessageComponent';
 
 
-let ENDPOINT = "http://localhost:5000/"
+let ENDPOINT = "https://chat-backend-pi-one.vercel.app/"
 let socket, singleChatCompare;
 
 const ChatBoxComponent = ({display, setDisplay}) => {
