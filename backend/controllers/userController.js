@@ -52,6 +52,17 @@ const registerUser = asyncHandler(async(req, res) => {
 //@access PUBLIC
 
 const login = asyncHandler(async(req,res) => {
+
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
+    // Handle preflight request
+    if (req.method === 'OPTIONS') {
+      res.status(204).end();
+      return;
+    }
     const { email, password } = req.body
     const user = await User.findOne({ email })
 
