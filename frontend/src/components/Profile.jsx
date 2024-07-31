@@ -34,7 +34,7 @@ const GroupProfile = (props) => {
         if(!groupName) return console.log("empty")
       // const { d } = await axios.get(`api/user?search=${search === "" ? null : search}`)
       try {
-        const { data } = await axios.put(`https://chat-app-backend-dusky-nu.vercel.app/api/chat/rename`, {
+        const { data } = await axios.put(`https://chat-app-backned.onrender.com/api/chat/rename`, {
           chatId: singleChat._id,
           chatName: groupName
         })
@@ -68,7 +68,7 @@ const GroupProfile = (props) => {
       console.log(search)
       // if(!inp) return console.log('not input')
       // console.log(inp)
-      const { data } = await axios.get(`https://chat-app-backend-dusky-nu.vercel.app/api/user?search=${search === "" ? null : search}`)
+      const { data } = await axios.get(`https://chat-app-backned.onrender.com/api/user?search=${search === "" ? null : search}`)
       console.log(data)
       setSearchResult(data.users)
       console.log(searchResult)
@@ -87,7 +87,7 @@ const GroupProfile = (props) => {
 
       try {
         {/*Loading */}
-        const { data } = await axios.put(`https://chat-app-backend-dusky-nu.vercel.app/api/chat/groupadd`, {
+        const { data } = await axios.put(`https://chat-app-backned.onrender.com/api/chat/groupadd`, {
           chatId: singleChat._id,
           userId: otherUser._id
         })
@@ -105,7 +105,7 @@ const GroupProfile = (props) => {
       }
 
       try {
-        const { data } = await axios.put(`https://chat-app-backend-dusky-nu.vercel.app/api/chat/groupremove`, {
+        const { data } = await axios.put(`https://chat-app-backned.onrender.com/api/chat/groupremove`, {
           chatId: singleChat._id,
           userId: otherUser._id
         })

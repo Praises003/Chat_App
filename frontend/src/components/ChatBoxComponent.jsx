@@ -59,7 +59,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
 
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://chat-app-backend-dusky-nu.vercel.app/api/message/${singleChat._id}`, {
+      const { data } = await axios.get(`http://localhost:5000/api/message/${singleChat?._id}`, {
         withCredentials: true // important to include cookies
       })
       data ? console.log(data) : console.log("no chat")
@@ -72,7 +72,10 @@ const ChatBoxComponent = ({display, setDisplay}) => {
     }
   }
   useEffect(() => {
-    socket = io.connect(ENDPOINT)
+    socket = io.connect(ENDPOINT,  {
+      transports: ['websocket'],
+      withCredentials: true
+    })
     socket.emit("initt", user)
     socket.on("connection", () => setSocketConn(true))
   },[])
@@ -95,6 +98,8 @@ const ChatBoxComponent = ({display, setDisplay}) => {
       }
     })
   })
+  console.log(singleChat)
+  console.log(messages)
   return (
     <div  className={`relative m ${!display ? 'w-full ' : 'hidden'} md:block md:w-7/12 h-[82.5vh] bg-gray-200 p-2`}>
       <div className="flex justify-between">
@@ -118,7 +123,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
       </div>}
       {
         singleChat ? (<div>
-          <h1>{!singleChat.groupChat ? (getSender(user, singleChat.users)) : (<div>
+          <h1>{!singleChat.groupChat ? (getSender(user, singleChat?.users)) : (<div>
             {singleChat.chatName.toUpperCase()}
           </div>)}</h1>
         </div>) : (

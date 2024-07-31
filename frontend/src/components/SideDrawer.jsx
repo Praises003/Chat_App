@@ -30,7 +30,7 @@ const SideDrawer = ({show, setShow}) => {
     try {
       //if(!input) setInput(e.target.value)
       setLoading(true);
-      const { data } = await axios.get(`https://chat-app-backend-dusky-nu.vercel.app/api/user/?search=${input}`)
+      const { data } = await axios.get(`https://chat-app-backned.onrender.com/api/user/?search=${input}`)
       setLoading(false);
       console.log(input)
       //setInputRes(data)
@@ -48,7 +48,7 @@ const SideDrawer = ({show, setShow}) => {
     console.log(userId)
 
     try {
-      const {data} = await axios.post(`https://chat-app-backend-dusky-nu.vercel.app/api/chat`, { userId })
+      const {data} = await axios.post(`https://chat-app-backned.onrender.com/api/chat`, { userId })
       console.log(data)
       setTestChat(data)
       if (!chat.find((ch) => ch._id === data._id)) {dispatch(chats([data, ...chat]))}
