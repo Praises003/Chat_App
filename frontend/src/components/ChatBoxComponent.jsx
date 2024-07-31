@@ -13,7 +13,7 @@ import axios from 'axios';
 import MessageComponent from './MessageComponent';
 
 
-let ENDPOINT = "https://chat-backend-pi-one.vercel.app/"
+let ENDPOINT = "https://chat-app-backend-dusky-nu.vercel.app/"
 let socket, singleChatCompare;
 
 const ChatBoxComponent = ({display, setDisplay}) => {
@@ -33,7 +33,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
     if(newMessage) {
       try {
         setNewMessage("")
-        const {data} = await axios.post(`https://chat-backend-pi-one.vercel.app/api/message`, {
+        const {data} = await axios.post(`https://chat-app-backend-dusky-nu.vercel.app/api/message`, {
           message: newMessage,
           chatId: singleChat._id
         }, {
@@ -43,7 +43,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
         socket.emit("new_message", data)
         setMessages([...messages, data])
         //setBool(!bool)
-        await console.log(messages)
+      
         
       } catch (error) {
         console.log(error)
@@ -59,7 +59,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
 
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://chat-backend-pi-one.vercel.app/api/message/${singleChat._id}`, {
+      const { data } = await axios.get(`https://chat-app-backend-dusky-nu.vercel.app/api/message/${singleChat._id}`, {
         withCredentials: true // important to include cookies
       })
       data ? console.log(data) : console.log("no chat")

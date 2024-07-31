@@ -11,7 +11,7 @@ const initialState = {
 
 export const register = createAsyncThunk('user/register', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("https://chat-backend-pi-one.vercel.app/api/user", user, {
+        const { data } = await axios.post("https://chat-app-backend-dusky-nu.vercel.app/api/user", user, {
             withCredentials: true // important to include cookies
           })
 
@@ -30,7 +30,7 @@ export const register = createAsyncThunk('user/register', async(user, thunkApi) 
 
 export const login = createAsyncThunk('user/login', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("https://chat-backend-pi-one.vercel.app/api/user/login", user, {
+        const { data } = await axios.post("https://chat-app-backend-dusky-nu.vercel.app/api/user/login", user, {
             withCredentials: true // important to include cookies
           })
         if (data) {

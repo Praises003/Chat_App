@@ -55,7 +55,7 @@ const ChatPage = () => {
   
   const onLogOut = async() => {
     try {
-      const { data } = await axios.post("https://chat-backend-pi-one.vercel.app/api/user/logout")
+      const { data } = await axios.post("https://chat-app-backend-dusky-nu.vercel.app/api/user/logout")
 
      dispatch(logout())     
     } catch (error) {
