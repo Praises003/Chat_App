@@ -19,20 +19,29 @@ const { deleteUpload } = require('./controllers/deleteUploadController')
 
 connectDb()
 
-const allowedOrigins = ['http://localhost:3000', 'https://chat-app-frontend-b4kq.onrender.com'];
-
-const corsOptions = {
-    origin: ['https://chat-app-frontend-b4kq.onrender.com'],
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://chat-app-frontend-b4kq.onrender.com'
+  ];
+  
+  const corsOptions = {
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
-    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version', 'Content-Length', 'Content-MD5', 'Date', 'X-Api-Version'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   };
   
 
 
 const app = express()
 app.use(cors(corsOptions))
-// app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
