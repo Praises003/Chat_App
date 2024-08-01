@@ -19,8 +19,13 @@ const { deleteUpload } = require('./controllers/deleteUploadController')
 
 connectDb()
 
-const allowedOrigins = ''
+// Allowed origins
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://chat-app-frontend-b4kq.onrender.com'
+  ];
   
+  // CORS options
   const corsOptions = {
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
@@ -31,14 +36,17 @@ const allowedOrigins = ''
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    exposedHeaders: ['X-Total-Count']
   };
-  
 
 
 const app = express()
-app.use(cors({origin: [ 'http://localhost:3000','https://chat-app-frontend-b4kq.onrender.com'], credentials:true,exposedHeaders:['X-Total-Count']}))
-//app.options('*', cors({origin: ['https://chat-app-frontend-b4kq.onrender.com', ], credentials:true,exposedHeaders:['X-Total-Count'],methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']}));
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
