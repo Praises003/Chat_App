@@ -27,7 +27,7 @@ const allowedOrigins = [
   
   // CORS options
   const corsOptions = {
-    origin: 'https://chat-app-frontend-b4kq.onrender.com', // Specific origin
+    origin: ['https://chat-app-frontend-b4kq.onrender.com',"http://localhost:3000/"], // Specific origin,
     credentials: true,
     exposedHeaders: ['X-Total-Count']
   };
