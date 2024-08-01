@@ -38,7 +38,7 @@ const allowedOrigins = ''
 
 const app = express()
 app.use(cors({origin: [ 'http://localhost:3000','https://chat-app-frontend-b4kq.onrender.com'], credentials:true,exposedHeaders:['X-Total-Count']}))
-
+app.options('*', cors({origin: ['https://chat-app-frontend-b4kq.onrender.com', 'http://localhost:3000'], credentials:true,exposedHeaders:['X-Total-Count'],methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']}));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
