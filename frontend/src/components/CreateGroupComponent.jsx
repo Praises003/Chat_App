@@ -25,7 +25,7 @@ const CreateGroupComponent = () => {
         if(!groupName || !selectedMembers) return console.log("cant submit")
 
         try {
-            const { data } = await axios.post(`https://chat-app-backned.onrender.com/api/chat/group`, {
+            const { data } = await axios.post(`https://chat-app-api-lake.vercel.app/api/chat/group`, {
                 name: groupName,
                 users: JSON.stringify(selectedMembers.map(member => member._id))
             }, {
@@ -85,7 +85,7 @@ const CreateGroupComponent = () => {
             console.log(search)
             // if(!inp) return console.log('not input')
             // console.log(inp)
-            const { data } = await axios.get(`https://chat-app-backned.onrender.com/api/user?search=${search === "" ? null : search}`, {
+            const { data } = await axios.get(`https://chat-app-api-lake.vercel.app/api/user?search=${search === "" ? null : search}`, {
               withCredentials: true // important to include cookies
             })
             console.log(data)
