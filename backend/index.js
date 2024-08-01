@@ -22,24 +22,20 @@ connectDb()
 const allowedOrigins = ['http://localhost:3000', 'https://your-frontend-domain.com'];
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true); // Allow requests with no origin (e.g., mobile apps, curl requests)
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Not allowed by CORS'));
-  },
-  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-  exposedHeaders: ['X-Total-Count'],
-  credentials: true,
-};
+    origin: ['http://localhost:3000', 'https://your-frontend-url.com'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version', 'Content-Length', 'Content-MD5', 'Date', 'X-Api-Version'],
+  };
+  
+
 
 const app = express()
-app.use(express.json())
-app.use(express.urlencoded({extended: true}))
 app.use(cors(corsOptions))
 app.options('*', cors(corsOptions));
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
 
 app.use(fileUpload({
     useTempFiles: true,
