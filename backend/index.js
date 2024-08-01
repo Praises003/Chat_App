@@ -27,9 +27,8 @@ const allowedOrigins = [
   
   // CORS options
   const corsOptions = {
+    origin: 'https://chat-app-frontend-b4kq.onrender.com', // Specific origin
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['X-Total-Count']
   };
 
@@ -39,7 +38,7 @@ const app = express()
 app.use(cors(corsOptions));
 
 // Handle preflight requests
-// app.options('*', cors(corsOptions));
+ app.options('*', cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
