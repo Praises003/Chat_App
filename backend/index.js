@@ -19,10 +19,7 @@ const { deleteUpload } = require('./controllers/deleteUploadController')
 
 connectDb()
 
-const allowedOrigins = [
-    'http://localhost:3000',
-    'https://chat-app-frontend-b4kq.onrender.com'
-  ];
+const allowedOrigins = ''
   
   const corsOptions = {
     origin: function (origin, callback) {
@@ -40,7 +37,7 @@ const allowedOrigins = [
 
 
 const app = express()
-app.use(cors(corsOptions))
+app.use(cors())
 app.options('*', cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
