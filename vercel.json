@@ -7,10 +7,14 @@
         "use": "@vercel/node"
       }
     ],
-    "rewrites": [
+    "routes": [
       {
-        "source": "/(.*)",
-        "destination": "backend/index.js"
+        "src": "/(.*)",
+        "dest": "backend/index.js",
+        "methods": ["GET", "POST","PUT", "DELETE", "OPTIONS"],
+        "headers": {
+            "Access-Control-Allow-Origin": "*"
+        }
       }
     ],
     "headers": [
