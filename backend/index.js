@@ -60,7 +60,7 @@ const corsOptions = {
   exposedHeaders: ['X-Total-Count']
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Apply CORS middleware
 
