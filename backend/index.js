@@ -35,20 +35,37 @@ connectDb()
 //     exposedHeaders: ['X-Total-Count']
 //   };
 
-const corsOptions = {
-    origin: ['https://chat-app-frontend-b4kq.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"],
-    credentials: true,
-    exposedheaders: ["set-cookie"]
-  };
+// const corsOptions = {
+//     origin: ['https://chat-app-frontend-b4kq.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"],
+//     credentials: true,
+
+//   };
  
 
 
 const app = express()
+
+const allowedOrigins = ['https://chat-application-c74d.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  exposedHeaders: ['X-Total-Count']
+};
+
+app.use(cors(corsOptions));
+
 // Apply CORS middleware
 app.use(cors(corsOptions));
 
 // Handle preflight requests
-app.options('*',cors(corsOptions));
+//app.options('*',cors(corsOptions));
  
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
