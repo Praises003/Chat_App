@@ -38,7 +38,7 @@ const corsOptions = {
 
 const app = express()
 // Apply CORS middleware
-app.use(cors(corsOptions));
+app.use(cors({credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}));
 
 // Handle preflight requests
  //app.options('*', cors(corsOptions));
