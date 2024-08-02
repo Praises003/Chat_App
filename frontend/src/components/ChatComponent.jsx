@@ -19,7 +19,7 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
     const getChats = async() => {
         try {
             setLoad(true)
-            const { data } = await axios.get('https://chat-app-api-vzj2.onrender.com',{
+            const { data } = await axios.get('https://chat-app-api-vzj2.onrender.com/api/chat',{
               withCredentials: true // important to include cookies
             } )
             console.log(data)

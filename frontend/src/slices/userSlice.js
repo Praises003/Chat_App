@@ -11,7 +11,7 @@ const initialState = {
 
 export const register = createAsyncThunk('user/register', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("https://chat-app-api-vzj2.onrender.com/api/user", user, )
+        const { data } = await axios.post("https://chat-app-api-vzj2.onrender.com/api/user", user, {withCredentials: true} )
 
         if (data) {
             localStorage.setItem('user', JSON.stringify(data))
@@ -28,7 +28,7 @@ export const register = createAsyncThunk('user/register', async(user, thunkApi) 
 
 export const login = createAsyncThunk('user/login', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("http://localhost:5000/api/user/login", user, {
+        const { data } = await axios.post("https://chat-app-api-vzj2.onrender.com/api/user/login", user, {
             withCredentials: true // important to include cookies
           }   )
         if (data) {
