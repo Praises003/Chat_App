@@ -56,11 +56,10 @@ const corsOptions = {
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true,
-  exposedHeaders: ['X-Total-Count']
+  credentials: true
 };
 
-// app.use(cors(corsOptions));
+ app.use(cors(corsOptions));
 
 // Apply CORS middleware
 
