@@ -45,7 +45,7 @@ connectDb()
 
 const app = express()
 
-const allowedOrigins = ['https://chat-application-c74d.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"];
+const allowedOrigins = ['https://chat-application-c74d.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', ];
 
 const corsOptions = {
   origin: (origin, callback) => {
