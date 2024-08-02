@@ -49,6 +49,7 @@ const allowedOrigins = ['https://chat-application-c74d.onrender.com', 'https://c
 
 const corsOptions = {
   origin: (origin, callback) => {
+    console.log('Origin:', origin); // Log the origin for debugging
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -62,7 +63,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Apply CORS middleware
-app.use(cors(corsOptions));
+
 
 // Handle preflight requests
 //app.options('*',cors(corsOptions));
