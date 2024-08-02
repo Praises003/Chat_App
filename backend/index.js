@@ -35,10 +35,17 @@ connectDb()
 //     exposedHeaders: ['X-Total-Count']
 //   };
 
+const corsOptions = {
+    origin: ['https://chat-app-frontend-b4kq.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"],
+    credentials: true,
+    exposedheaders: ["set-cookie"]
+  };
+ 
+
 
 const app = express()
 // Apply CORS middleware
-app.use(cors({credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}));
+app.use(cors(corsOptions));
 
 // Handle preflight requests
  app.options('*',cors({credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}));

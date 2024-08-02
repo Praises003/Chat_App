@@ -30,7 +30,7 @@ export const register = createAsyncThunk('user/register', async(user, thunkApi) 
 
 export const login = createAsyncThunk('user/login', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("https://chat-app-api-eta.vercel.app/api/user/login", user, {
+        const { data } = await axios.post("https://chat-app-backned.onrender.com/api/user/login", user, {
             withCredentials: true 
           })
         if (data) {
