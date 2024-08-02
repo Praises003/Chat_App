@@ -59,7 +59,20 @@ const corsOptions = {
   credentials: true
 };
 
- app.use(cors(corsOptions));
+//  app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://chat-application-c74d.onrender.com');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  
+    // Handle preflight requests
+    if (req.method === 'OPTIONS') {
+      return res.status(204).end(); // Send a response for preflight requests
+    }
+  
+    next();
+  });
 
 // Apply CORS middleware
 
