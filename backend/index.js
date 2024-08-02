@@ -25,6 +25,7 @@ connectDb()
 
 const corsOptions = {
     origin: (origin, callback) => {
+        console.log(origin)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
