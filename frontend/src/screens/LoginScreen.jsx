@@ -6,6 +6,7 @@ import {Link} from "react-router-dom"
 import chatLogoo from "../assets/chat_logo4.png"
 import { login } from '../slices/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import SpinnerComponent from '../components/SpinnerComponent'
 
 
 const LoginScreen = () => {
@@ -51,6 +52,9 @@ const LoginScreen = () => {
      return (
       <>
         <div className="bg-gray-50 w-96  mx-auto mt-6 p-5">
+        <div className="">
+       {isLoading && (<SpinnerComponent /> ) }
+      </div>
           <img className=' w-40 mx-auto' src={chatLogoo} alt="" />
           <h1 style={{color: "#05E28D"}} className=' font-bold text-4xl text-center mb-6'>WhatsUp</h1>
           <p className='text-center font-medium text-lg md:text-xl mb-4'>Sign in to your account</p>

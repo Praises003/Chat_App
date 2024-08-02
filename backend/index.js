@@ -21,43 +21,26 @@ connectDb()
 
 // Allowed origins
 
-// const allowedOrigins = ['https://chat-app-frontend-b4kq.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"];
+ const allowedOrigins = ['https://chat-application-c74d.onrender.com/', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"];
 
-// const corsOptions = {
-//     origin: (origin, callback) => {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error('Not allowed by CORS'));
-//       }
-//     },
-//     credentials: true,
-//     exposedHeaders: ['X-Total-Count']
-//   };
+const corsOptions = {
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+   
+  };
 
-// const corsOptions = {
-//     origin: ['https://chat-app-frontend-b4kq.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', "http://localhost:3000"],
-//     credentials: true,
 
-//   };
  
 
 
 const app = express()
-
-const allowedOrigins = ['https://chat-application-c74d.onrender.com', 'https://chat-app-frontend-steel-six.vercel.app/', ];
-
-const corsOptions = {
-  origin: (origin, callback) => {
-    console.log('Origin:', origin); // Log the origin for debugging
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true
-};
+app.use(cors(corsOptions))
 
 //  app.use(cors(corsOptions));
 

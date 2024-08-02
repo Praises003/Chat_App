@@ -11,9 +11,10 @@ import getSender from '../utils/getSender';
 import Profile from './Profile';
 import axios from 'axios';
 import MessageComponent from './MessageComponent';
+import SpinnerComponent from '../components/SpinnerComponent'
 
 
-let ENDPOINT = "https://chat-app-backned.onrender.com"
+let ENDPOINT = "https://chat-app-api-vzj2.onrender.com"
 let socket, singleChatCompare;
 
 const ChatBoxComponent = ({display, setDisplay}) => {
@@ -33,7 +34,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
     if(newMessage) {
       try {
         setNewMessage("")
-        const {data} = await axios.post(`https://chat-app-backned.onrender.com/api/message`, {
+        const {data} = await axios.post(`https://chat-app-api-vzj2.onrender.com/api/message`, {
           message: newMessage,
           chatId: singleChat._id
         }, {
@@ -59,7 +60,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
 
     try {
       setLoading(true);
-      const { data } = await axios.get(`https://chat-app-backned.onrender.com/api/message/${singleChat?._id}`, {
+      const { data } = await axios.get(`https://chat-app-api-vzj2.onrender.com/api/message/${singleChat?._id}`, {
         withCredentials: true // important to include cookies
       })
       data ? console.log(data) : console.log("no chat")
@@ -140,7 +141,7 @@ const ChatBoxComponent = ({display, setDisplay}) => {
       { console.log(messages)}
       {/* {loading ? "Loading" : messages.map(msg => msg && <h1>{msg.message}</h1>)} */}
       <div  className="flex flex-col mb-16 max-h-[calc(68.5vh-100px)] overflow-y-auto">
-      {loading ? <h1>Loading</h1> : messages.map(msg => <MessageComponent key={msg._id} msg={msg} />)}
+      {loading ? <SpinnerComponent /> : messages.map(msg => <MessageComponent key={msg._id} msg={msg} />)}
       </div>
       
     </div>

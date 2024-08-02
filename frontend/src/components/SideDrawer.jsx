@@ -5,6 +5,7 @@ import Avatar from './AvatarComponent'
 import {useSelector, useDispatch} from "react-redux"
 import { chats } from '../slices/chatSlice'
 import { singleChats } from '../slices/singleChatSlice'
+import SpinnerComponent from '../components/SpinnerComponent'
 
 
 const SideDrawer = ({show, setShow}) => {
@@ -30,7 +31,7 @@ const SideDrawer = ({show, setShow}) => {
     try {
       //if(!input) setInput(e.target.value)
       setLoading(true);
-      const { data } = await axios.get(`https://chat-app-backned.onrender.com/api/user/?search=${input}`)
+      const { data } = await axios.get(`https://chat-app-api-vzj2.onrender.com/api/user/?search=${input}`, {withCredentials: true})
       setLoading(false);
       console.log(input)
       //setInputRes(data)
@@ -48,7 +49,7 @@ const SideDrawer = ({show, setShow}) => {
     console.log(userId)
 
     try {
-      const {data} = await axios.post(`https://chat-app-backned.onrender.com/api/chat`, { userId })
+      const {data} = await axios.post(`https://chat-app-api-vzj2.onrender.com/api/chat`, { userId }, {withCredentials: true})
       console.log(data)
       setTestChat(data)
       if (!chat.find((ch) => ch._id === data._id)) {dispatch(chats([data, ...chat]))}
@@ -81,7 +82,7 @@ const SideDrawer = ({show, setShow}) => {
             >Go</button>
         </div>
         <div className='mt-12'>
-      {loading ? <h1>Loading</h1> : inputRes?.map(res => <Avatar key={res._id} res={res} onFunction={() => accessChat(res._id)} />)}
+      {loading ? <SpinnerComponent /> : inputRes?.map(res => <Avatar key={res._id} res={res} onFunction={() => accessChat(res._id)} />)}
       {/*{console.log(chat[0])}*/}
       {console.log(testChat)}
     </div>

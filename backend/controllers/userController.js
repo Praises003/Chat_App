@@ -53,28 +53,20 @@ const registerUser = asyncHandler(async(req, res) => {
 
 const login = asyncHandler(async(req,res) => {
 
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  
-    // Handle preflight request
-    if (req.method === 'OPTIONS') {
-      res.status(204).end();
-      return;
-    }
+    
     const { email, password } = req.body
     const user = await User.findOne({ email })
 
     if (user && (await user.validatePassword(password))) {
-        let token = generateToken(res, user._id)
+         generateToken(res, user._id)
+        
         res.status(201).json({
             _id: user._id,
             name: user.name,
             email: user.email,
             isAdmin: user.isAdmin,
             pic: user.pic,
-            token
+    
         })
     } else {
         res.status(400)

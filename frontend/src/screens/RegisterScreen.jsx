@@ -7,6 +7,7 @@ import axios from "axios"
 
 //import {register, reset} from "../slices/userSlice"
 import { register, reset } from '../slices/userSlice'
+import SpinnerComponent from '../components/SpinnerComponent'
 
 const RegisterScreen = () => {
 const [formData, setFormData] = useState({
@@ -91,6 +92,9 @@ const postPic = async() => {
    return (
     <>
       <div className="bg-gray-50 w-96  mx-auto mt-6 p-5">
+      <div className="">
+       {isLoading && (<SpinnerComponent /> ) }
+      </div>
         <img className=' w-40 mx-auto' src={chatLogoo} alt="" />
         <h1 style={{color: "#05E28D"}} className=' font-bold text-4xl text-center mb-6'>WhatsUp</h1>
         <p className='text-center font-medium text-lg md:text-xl mb-4'>Sign Up Now</p>

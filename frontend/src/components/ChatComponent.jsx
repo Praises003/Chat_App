@@ -5,6 +5,9 @@ import axios from 'axios'
 import getSender from '../utils/getSender'
 import { RealUtil } from '../utils/RealUtil'
 import ChatAvatarComponent from './ChatAvatarComponent'
+import SpinnerComponent from '../components/SpinnerComponent'
+
+
 const ChatComponent = ({display, setDisplay, refresh}) => {
     const {chat, isLoading, isError, isSuccess, message}= useSelector(state => state.chat) 
     const [load, setLoad] = useState(false)
@@ -16,9 +19,9 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
     const getChats = async() => {
         try {
             setLoad(true)
-            const { data } = await axios.get('https://chat-app-backned.onrender.com/api/chat', {
-                withCredentials: true // important to include cookies
-              })
+            const { data } = await axios.get('https://chat-app-api-vzj2.onrender.com',{
+              withCredentials: true // important to include cookies
+            } )
             console.log(data)
             dispatch(chats(data.getChat))
             setLoad(false)
@@ -40,7 +43,7 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
     <div className={`m-2 h-full ${display ? 'w-full' : 'hidden'}  md:block md:w-4/12  }`}>
         <h1>CHATS</h1>
         <div key={1} className='max-h-[calc(93vh-100px)] overflow-y-auto'>
-           {load ? <h1>Loading</h1> :
+           {load ? <SpinnerComponent /> :
             chat?.map(ch => (ch ? <ChatAvatarComponent key={chat._id} chat={ch} display={display} setDisplay={setDisplay}  /> : null ))
            }
            {/* {chat?.map(chat => <h1 key={chat._id}>{chat.latestMessage ? chat.latestMessage.message : null}</h1>)} */}
