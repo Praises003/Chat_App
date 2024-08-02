@@ -21,7 +21,7 @@ connectDb()
 
 // Allowed origins
 
-const allowedOrigins = ['https://chat-app-frontend-b4kq.onrender.com'];
+const allowedOrigins = ['https://chat-app-frontend-b4kq.onrender.com', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: (origin, callback) => {
