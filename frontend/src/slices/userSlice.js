@@ -11,7 +11,7 @@ const initialState = {
 
 export const register = createAsyncThunk('user/register', async(user, thunkApi) => {
     try {
-        const { data } = await axios.post("https://chat-app-api-lake.vercel.app/api/user", user, {
+        const { data } = await axios.post("https://chat-app-backned.onrender.com/api/user", user, {
             withCredentials: true // important to include cookies
           })
 

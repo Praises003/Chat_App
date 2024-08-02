@@ -16,7 +16,7 @@ const ChatComponent = ({display, setDisplay, refresh}) => {
     const getChats = async() => {
         try {
             setLoad(true)
-            const { data } = await axios.get('https://chat-app-api-lake.vercel.app/api/chat', {
+            const { data } = await axios.get('https://chat-app-backned.onrender.com/api/chat', {
                 withCredentials: true // important to include cookies
               })
             console.log(data)

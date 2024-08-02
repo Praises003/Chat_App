@@ -68,7 +68,7 @@ const postPic = async() => {
   formD.append("file", pic)
   formD.append("cloud_name", "dmhylxogr")
   try {
-    const { data } = await axios.post("https://chat-app-backend-dusky-nu.vercel.app/api/upload", formD)
+    const { data } = await axios.post("https://chat-app-backned.onrender.com/api/upload", formD)
   console.log(data)
   //setUploadPic(data)
   return data.url
