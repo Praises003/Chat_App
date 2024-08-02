@@ -48,7 +48,7 @@ const app = express()
 app.use(cors(corsOptions));
 
 // Handle preflight requests
- app.options('*',cors({credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}));
+//  app.options('*',cors({credentials:true,exposedHeaders:['X-Total-Count'],methods:['GET','POST','PATCH','DELETE']}));
  
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
