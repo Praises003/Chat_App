@@ -21,7 +21,7 @@ connectDb()
 
 // Allowed origins
 
-const allowedOrigins = ['https://chat-app-frontend-b4kq.onrender.com'];
+const allowedOrigins = ['https://chat-app-frontend-b4kq.onrender.com', 'http://localhost:3000'];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -41,7 +41,7 @@ const app = express()
 app.use(cors(corsOptions));
 
 // Handle preflight requests
- //app.options('*', cors(corsOptions));
+ app.options('*', cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
