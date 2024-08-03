@@ -55,7 +55,7 @@ const ChatPage = () => {
   
   const onLogOut = async() => {
     try {
-      const { data } = await axios.post("https://chat-app-backned.onrender.com/api/user/logout")
+      const { data } = await axios.post("https://chat-app-api-vzj2.onrender.com/api/user/logout")
 
      dispatch(logout())     
     } catch (error) {
