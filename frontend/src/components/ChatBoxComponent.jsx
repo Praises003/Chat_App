@@ -74,7 +74,6 @@ const ChatBoxComponent = ({display, setDisplay}) => {
   }
   useEffect(() => {
     socket = io.connect(ENDPOINT,  {
-      transports: ['websocket'],
       withCredentials: true
     })
     socket.emit("initt", user)
