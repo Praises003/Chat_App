@@ -168,7 +168,7 @@ const GroupProfile = (props) => {
            
 
           </div>
-          {singleChat?.users.map(user => <ProfileAvatarComponent users={user} key={user.email} handleRemove={() => {onRemove(user)}} />)}
+          {singleChat?.users.map(user => <ProfileAvatarComponent users={user} groupAdmin={singleChat?.groupAdmin} key={user.email} handleRemove={() => {onRemove(user)}} />)}
 
           <div className="ml-2 flex justify-normal items-center" onClick={() => {onRemove(user); navigate("/chat")}}>
           <BiDoorOpen color='red' size={24}/>

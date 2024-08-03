@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const ProfileAvatarComponent = ({users, handleRemove}) => {
+const ProfileAvatarComponent = ({users, groupAdmin, handleRemove}) => {
     const {user }= useSelector(state => state.user)
     
   return (
@@ -14,7 +14,7 @@ const ProfileAvatarComponent = ({users, handleRemove}) => {
                     <p>{users.name}</p>
                     <p className='break-normal'>{users.email}</p>
                 </div>
-                <p style={{backgroundColor: '#E4F5F2', color: "#05E28D" }} className={`${user._id === users?._id ? "block" : "hidden"} text-sm border rounded`}>Group Admin</p>
+                <p style={{backgroundColor: '#E4F5F2', color: "#05E28D" }} className={`${groupAdmin?._id ? "block" : "hidden"} text-sm border rounded`}>Group Admin</p>
                 
                     
                     
