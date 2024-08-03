@@ -82,7 +82,8 @@ const server = http.createServer(app)
 const io = new Server(server, {
     pingTimeout: 60000,
     cors: {
-        origin: allowedOrigins
+        origin: allowedOrigins,
+        credentials: true
     }
 });
 
