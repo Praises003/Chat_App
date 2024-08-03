@@ -90,7 +90,7 @@ const GroupProfile = (props) => {
         const { data } = await axios.put(`https://chat-app-api-vzj2.onrender.com/api/chat/groupadd`, {
           chatId: singleChat._id,
           userId: otherUser._id
-        })
+        }, {withCredentials:true})
         console.log(data)
         dispatch(singleChats(data))
       } catch (error) {
