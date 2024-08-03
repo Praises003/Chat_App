@@ -14,7 +14,7 @@ const ProfileAvatarComponent = ({users, groupAdmin, handleRemove}) => {
                     <p>{users.name}</p>
                     <p className='break-normal'>{users.email}</p>
                 </div>
-                <p style={{backgroundColor: '#E4F5F2', color: "#05E28D" }} className={`${groupAdmin?._id ? "block" : "hidden"} text-sm border rounded`}>Group Admin</p>
+                <p style={{backgroundColor: '#E4F5F2', color: "#05E28D" }} className={`${users?._id === groupAdmin?._id ? "block" : "hidden"} text-sm border rounded`}>Group Admin</p>
                 
                     
                     
